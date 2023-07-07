@@ -1,9 +1,0 @@
-/node_modules/
-
-/build/
-/.next/
-
-/.env
-/game/*
-
-!/game/.gitkeep

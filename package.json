@@ -1,5 +1,5 @@
 {
-  "name": "lessdestructivefarm",
+  "name": "madrflagger",
   "private": true,
   "version": "0.1.0",
   "description": "",
@@ -11,11 +11,6 @@
     "start": "cross-env NODE_ENV=production node build/server.js",
     "prettier": "prettier --write src/**/*.{ts,tsx,js,css,html}"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:Giotino/LessDestructiveFarm.git"
-  },
-  "author": "Giotino <giovanni@minotti.io>",
   "license": "UNLICENSED",
   "dependencies": {
     "apollo-boost": "^0.4.4",

@@ -12,9 +12,9 @@ services:
       - DB_PASS=postgres
       - DB_DIALECT=postgres
     volumes:
-      - ./game:/usr/src/app/game
+      - ./server:/usr/src/app/server
     ports:
-      - '3000:3000'
+      - '127.0.0.1:6969:3000'
 
   postgres:
     image: postgres:12

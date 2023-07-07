@@ -3,7 +3,7 @@ import Flag, { FlagState } from './lib/models/flag';
 import { exec } from 'child_process';
 import path from 'path';
 
-const gameDir = path.resolve(path.join(__dirname, '../game/'));
+const gameDir = path.resolve(path.join(__dirname, '../configs/'));
 
 class GameManager {
   private game: any;

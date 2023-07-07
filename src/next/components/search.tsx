@@ -103,8 +103,8 @@ class Search extends Component<Props, State> {
     payload.team = this.state.team;
     payload.status = this.state.status;
     payload.flag = this.state.flag;
-    payload.since = this.state.since ? moment(this.state.since).format('YYYY-MM-DD HH:mm') : '';
-    payload.until = this.state.until ? moment(this.state.until).format('YYYY-MM-DD HH:mm') : '';
+    payload.since = this.state.since ? moment(this.state.since).format('HH:mm') : '';
+    payload.until = this.state.until ? moment(this.state.until).format('HH:mm') : '';
     payload.checksystem_response = this.state.checksystemResponse;
 
     this.props.onSearch(payload);
@@ -171,7 +171,7 @@ class Search extends Component<Props, State> {
                     selected={this.state.since}
                     onChange={date => this.onDateChanged('since', date)}
                     timeInputLabel="Time:"
-                    dateFormat="yyyy-MM-dd HH:mm"
+                    dateFormat="HH:mm"
                     showTimeInput={true}
                     shouldCloseOnSelect={false}
                   />
@@ -185,7 +185,7 @@ class Search extends Component<Props, State> {
                     selected={this.state.until}
                     onChange={date => this.onDateChanged('until', date)}
                     timeInputLabel="Time:"
-                    dateFormat="yyyy-MM-dd HH:mm"
+                    dateFormat="HH:mm"
                     showTimeInput={true}
                     shouldCloseOnSelect={false}
                   />

@@ -11,7 +11,7 @@ const FlagRow: StatelessComponent<Props> = ({ flag }) => (
     <th scope="row">{flag.sploit}</th>
     <td>{flag.team}</td>
     <td>{flag.flag}</td>
-    <td>{moment(flag.timestamp).format('YYYY-MM-DD HH:mm:ss')}</td>
+    <td>{moment(flag.timestamp).format('HH:mm:ss')}</td>
     <td>{flag.status}</td>
     <td>{flag.checksystem_response}</td>
   </tr>
