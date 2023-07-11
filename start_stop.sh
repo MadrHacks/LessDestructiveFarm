@@ -16,16 +16,28 @@ ORANGE="#F09483"
 # PASS=$(gum input --password --placeholder "your user password" --header "Sudo password to run docker" --header.foreground "$WHITE")# if [[ $(groups | grep docker | wc -l) -eq 1 ]]
 
 
-CHOICE=$(gum choose --cursor.foreground "$ORANGE" --item.faint "Start" "Stop" "Exit" --header "What do you want to do with the Farmer?" --header.foreground "$WHITE")
+CHOICE=$(gum choose --cursor.foreground "$ORANGE" --item.faint "Build" "Start" "Stop" "Exit" --header "What do you want to do with the Farmer?" --header.foreground "$WHITE")
 
-if [[ $CHOICE == "Start" ]]
+if [[ $CHOICE == "Build" ]]
+then
+  gum spin -s line --title "Taking container down ..." -- $DOCKER compose down
+  gum spin -s line --title "Rebuilding container ..." -- $DOCKER compose up -d --build
+  if [[ $($DOCKER container ls | grep server-app | wc -l) -eq 1 ]]
+  then
+    echo "Container correctly $(gum style --foreground "$GREEN" --bold "UP")"
+  else
+    echo "$(gum style --foreground "$RED" --bold "Something went wrong") ... Aborting"
+    exit 1
+  fi
+elif [[ $CHOICE == "Start" ]]
 then
   if [[ $($DOCKER container ls | grep server-app | wc -l) -eq 1 ]]
   then
     REBUILD=$(gum choose --cursor.foreground "$ORANGE" --item.faint "Yes" "No" --header "The Farmer container is already $(gum style --foreground "$GREEN" --bold "UP"), do you want to rebuild it?" --header.foreground "$WHITE")
     if [[ $REBUILD == "Yes" ]]
     then
-      gum spin -s line --title "Rebuilding container ..." -- $DOCKER compose up -d
+      gum spin -s line --title "Taking container down ..." -- $DOCKER compose down
+      gum spin -s line --title "Rebuilding container ..." -- $DOCKER compose up -d --build
     fi
   else
     gum spin -s line --title "Building container ..." -- $DOCKER compose up -d
