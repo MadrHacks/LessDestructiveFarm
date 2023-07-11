@@ -9,6 +9,7 @@ class GameManager {
   private game: any;
   getClientConfig() {
     return {
+      SERVICES: this.game.services,
       TEAMS: this.game.teams,
       FLAG_FORMAT: this.game.flagFormat,
       FLAG_LIFETIME: this.game.flagLifetime,

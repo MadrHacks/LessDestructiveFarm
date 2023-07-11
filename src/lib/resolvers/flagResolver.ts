@@ -21,11 +21,19 @@ class GetFlagsCountArgs {
 
   @IsOptional()
   @Field({ nullable: true })
-  sploit?: string;
+  service?: string;
+
+  @IsOptional()
+  @Field({ nullable: true })
+  exploit?: string;
 
   @IsOptional()
   @Field({ nullable: true })
   team?: string;
+
+  @IsOptional()
+  @Field({ nullable: true })
+  tick?: number;
 
   @IsOptional()
   @IsDate()
@@ -63,7 +71,10 @@ class GetFlagsArgs extends GetFlagsCountArgs {
 @ObjectType()
 class SearchValues {
   @Field(type => [String])
-  sploits: string[];
+  service: string[];
+
+  @Field(type => [String])
+  exploits: string[];
 
   @Field(type => [String])
   teams: string[];
@@ -75,12 +86,14 @@ class SearchValues {
 @Resolver()
 export class FlagResolver {
   static argumentsToQuery(args: GetFlagsCountArgs | GetFlagsArgs) {
-    const { flag, sploit, team, since, until, status, checksystem_response } = args;
+    const { flag, service, exploit, team, tick, since, until, status, checksystem_response } = args;
     const search: any = {};
 
     if (flag) search.flag = { [Op.iLike]: '%' + flag + '%' };
-    if (sploit) search.sploit = sploit;
+    if (service) search.service = service;
+    if (exploit) search.exploit = exploit;
     if (team) search.team = team;
+    if (tick) search.tick = tick;
     if (status) search.status = status;
     if (checksystem_response)
       search.checksystem_response = { [Op.iLike]: '%' + checksystem_response + '%' };
@@ -130,12 +143,19 @@ export class FlagResolver {
 
   @Query(returns => SearchValues)
   async getSearchValues(): Promise<SearchValues> {
-    const sploitRes: [{ DISTINCT: string }] = await Flag.aggregate('sploit', 'DISTINCT', {
+    const serviceRes: [{ DISTINCT: string }] = await Flag.aggregate('service', 'DISTINCT', {
       plain: false,
       raw: true
     });
-    const sploits = [];
-    for (const status of sploitRes) sploits.push(status.DISTINCT);
+    const services = [];
+    for (const status of serviceRes) services.push(status.DISTINCT);
+
+    const exploitRes: [{ DISTINCT: string }] = await Flag.aggregate('exploit', 'DISTINCT', {
+      plain: false,
+      raw: true
+    });
+    const exploits = [];
+    for (const status of exploitRes) exploits.push(status.DISTINCT);
 
     const teamRes: [{ DISTINCT: string }] = await Flag.aggregate('team', 'DISTINCT', {
       plain: false,
@@ -144,6 +164,13 @@ export class FlagResolver {
     const teams = [];
     for (const status of teamRes) teams.push(status.DISTINCT);
 
+    const tickRes: [{ DISTINCT: number }] = await Flag.aggregate('tick', 'DISTINCT', {
+      plain: false,
+      raw: true
+    });
+    const ticks = [];
+    for (const status of tickRes) ticks.push(status.DISTINCT);
+
     const statusRes: [{ DISTINCT: string }] = await Flag.aggregate('status', 'DISTINCT', {
       plain: false,
       raw: true
@@ -151,7 +178,7 @@ export class FlagResolver {
     const statuses = [];
     for (const status of statusRes) statuses.push(status.DISTINCT);
 
-    return { sploits, teams, statuses };
+    return { services, exploits, teams, statuses };
   }
 
   @Mutation(returns => Boolean)
@@ -161,7 +188,7 @@ export class FlagResolver {
     for (const flag of flags) {
       flagsForInserion.push({
         flag: flag,
-        sploit: 'MANUAL',
+        exploit: 'MANUAL',
         team: 'MANUAL',
         timestamp: new Date()
       });

@@ -29,15 +29,17 @@ export default class extends Component<Props> {
 
       const offset = (parseInt(query.page, 10) - 1) * FLAGS_PER_PAGE;
 
-      const { sploit, team, status, flag, since, until, checksystem_response } = query;
+      const { service, exploit, team, tick, status, flag, since, until, checksystem_response } = query;
 
       const result = await apolloClient.query({
         query: queries.GET_ALL_DATA,
         variables: {
           offset,
           limit: FLAGS_PER_PAGE,
-          sploit,
+          service,
+          exploit,
           team,
+          tick,
           status,
           flag,
           since: new Date(since),
@@ -90,7 +92,7 @@ export default class extends Component<Props> {
     return (
       <>
         <Head>
-          <title>Less Destructive Farm</title>
+          <title>MadrHacks Farmer</title>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
         <NavBar />

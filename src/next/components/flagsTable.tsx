@@ -18,10 +18,12 @@ class FlagsTable extends Component<Props> {
         <table className="table table-hover">
           <thead>
             <tr className="table-secondary">
-              <th scope="col">Sploit</th>
+              <th scope="col">Exploit</th>
               <th scope="col">Team</th>
+              <th scope="col">Service</th>
               <th scope="col">Flag</th>
               <th scope="col">Time</th>
+              <th scope="col">Tick</th>
               <th scope="col">Status</th>
               <th scope="col">Checksystem Response</th>
             </tr>

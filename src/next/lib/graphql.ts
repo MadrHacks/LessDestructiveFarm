@@ -10,8 +10,10 @@ export const queries = {
       $offset: Int = 0
       $limit: Int = 30
       $flag: String
-      $sploit: String
+      $service: String
+      $exploit: String
       $team: String
+      $tick: Int
       $since: DateTime
       $until: DateTime
       $status: String
@@ -21,31 +23,38 @@ export const queries = {
         offset: $offset
         limit: $limit
         flag: $flag
-        sploit: $sploit
+        service: $service
+        exploit: $exploit
         team: $team
+        tick: $tick
         since: $since
         until: $until
         status: $status
         checksystem_response: $checksystem_response
       ) {
         flag
-        sploit
+        service
+        exploit
         team
+        tick
         timestamp
         status
         checksystem_response
       }
       getFlagCount(
         flag: $flag
-        sploit: $sploit
+        service: $service
+        exploit: $exploit
         team: $team
+        tick: $tick
         since: $since
         until: $until
         status: $status
         checksystem_response: $checksystem_response
       )
       getSearchValues {
-        sploits
+        services
+        exploits
         teams
         statuses
       }

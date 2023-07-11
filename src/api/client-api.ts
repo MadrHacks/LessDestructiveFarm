@@ -18,7 +18,7 @@ const makeClientApiRouter = async () => {
     for (const flag of flags) {
       flagsForInserion.push({
         flag: flag.flag,
-        sploit: flag.sploit,
+        exploit: flag.exploit,
         team: flag.team,
         timestamp: new Date()
       });

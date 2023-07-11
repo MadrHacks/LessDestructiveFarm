@@ -12,10 +12,12 @@ interface Props {
 }
 
 interface State {
-  sploit: string;
+  service: string;
+  exploit: string;
   team: string;
   status: string;
   flag: string;
+  tick: string;
   since?: Date;
   until?: Date;
   checksystemResponse: string;
@@ -26,17 +28,21 @@ class Search extends Component<Props, State> {
     super(props);
 
     this.state = {
-      sploit: props.searchParams.sploit || '',
+      service: props.searchParams.service || '',
+      exploit: props.searchParams.exploit || '',
       team: props.searchParams.team || '',
       status: props.searchParams.status || '',
       flag: props.searchParams.flag || '',
+      tick: props.searchParams.tick || '',
       since: props.searchParams.since && new Date(props.searchParams.since),
       until: props.searchParams.until && new Date(props.searchParams.until),
       checksystemResponse: props.searchParams.checksystem_response || ''
     };
 
-    this.onSelectSploit = this.onSelectSploit.bind(this);
+    this.onSelectService = this.onSelectService.bind(this);
+    this.onSelectExploit = this.onSelectExploit.bind(this);
     this.onSelectTeam = this.onSelectTeam.bind(this);
+    this.onSelectTick = this.onSelectTick.bind(this);
     this.onSelectStatus = this.onSelectStatus.bind(this);
     this.onTextInputChanged = this.onTextInputChanged.bind(this);
     this.onResetClick = this.onResetClick.bind(this);
@@ -47,7 +53,8 @@ class Search extends Component<Props, State> {
     //If searchParams object changed (needed for update on navigation)
     if (this.props.searchParams !== prevProps.searchParams)
       this.setState({
-        sploit: this.props.searchParams.sploit || '',
+        service: this.props.searchParams.service || '',
+        exploit: this.props.searchParams.exploit || '',
         team: this.props.searchParams.team || '',
         status: this.props.searchParams.status || '',
         flag: this.props.searchParams.flag || '',
@@ -57,14 +64,25 @@ class Search extends Component<Props, State> {
       });
   }
 
-  onSelectSploit(event: any) {
+
+  onSelectService(event: any) {
     this.setState({
-      sploit: event.target.value
+      service: event.target.value
+    });
+  }
+  onSelectExploit(event: any) {
+    this.setState({
+      exploit: event.target.value
     });
   }
   onSelectTeam(event: any) {
     this.setState({
       team: event.target.value
+    });
+  }
+  onSelectTick(event: any) {
+    this.setState({
+      tick: event.target.value
     });
   }
   onSelectStatus(event: any) {
@@ -84,8 +102,10 @@ class Search extends Component<Props, State> {
 
   onResetClick() {
     this.setState({
-      sploit: '',
+      service: '',
+      exploit: '',
       team: '',
+      tick: '',
       status: '',
       flag: '',
       since: undefined,
@@ -99,8 +119,10 @@ class Search extends Component<Props, State> {
   onSearchClick() {
     const payload: any = {};
 
-    payload.sploit = this.state.sploit;
+    payload.service = this.state.service;
+    payload.exploit = this.state.exploit;
     payload.team = this.state.team;
+    payload.tick = this.state.tick;
     payload.status = this.state.status;
     payload.flag = this.state.flag;
     payload.since = this.state.since ? moment(this.state.since).format('HH:mm') : '';
@@ -118,14 +140,31 @@ class Search extends Component<Props, State> {
             <h4 className="card-title">Show Flags</h4>
             <div className="row mb-2">
               <div className="col-md-4">
-                <label>Sploit</label>
+                <label>Service</label>
                 <select
                   className="form-control form-control-sm"
-                  onChange={this.onSelectSploit}
-                  value={this.state.sploit}
+                  onChange={this.onSelectService}
+                  value={this.state.service}
                 >
                   <option value="">All</option>
-                  {this.props.searchValues.sploits.map((value, i) => {
+                  {this.props.searchValues.service.map((value, i) => {
+                    return (
+                      <option key={i} value={value}>
+                        {value}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+              <div className="col-md-4">
+                <label>Exploit</label>
+                <select
+                  className="form-control form-control-sm"
+                  onChange={this.onSelectExploit}
+                  value={this.state.exploit}
+                >
+                  <option value="">All</option>
+                  {this.props.searchValues.exploits.map((value, i) => {
                     return (
                       <option key={i} value={value}>
                         {value}
@@ -190,6 +229,16 @@ class Search extends Component<Props, State> {
                     shouldCloseOnSelect={false}
                   />
                 </div>
+              </div>
+              <div className="col-md-3">
+                <label>Tick</label>
+                <input
+                  type="text"
+                  className="form-control form-control-sm"
+                  value={this.state.tick}
+                  id="tick"
+                  onChange={this.onTextInputChanged}
+                />
               </div>
               <div className="col-md-2">
                 <label>Status</label>

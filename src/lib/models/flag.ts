@@ -12,7 +12,7 @@ export default class Flag extends Model<Flag> {
 
   @Field()
   @Column({ allowNull: false })
-  sploit!: string;
+  exploit!: string;
 
   @Field()
   @Column({ allowNull: false })
@@ -21,6 +21,14 @@ export default class Flag extends Model<Flag> {
   @Field()
   @Column({ allowNull: false })
   timestamp!: Date;
+
+  @Field()
+  @Column({ allowNull: false })
+  service!: string;
+
+  @Field()
+  @Column({ allowNull: false })
+  tick!: number;
 
   @Field({ nullable: true })
   @Column({ allowNull: true, defaultValue: 'QUEUED' })
