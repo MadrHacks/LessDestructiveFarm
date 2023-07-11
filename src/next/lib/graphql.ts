@@ -13,7 +13,7 @@ export const queries = {
       $service: String
       $exploit: String
       $team: String
-      $tick: Int
+      $tick: String
       $since: DateTime
       $until: DateTime
       $status: String

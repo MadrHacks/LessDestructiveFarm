@@ -12,6 +12,10 @@ export default class Flag extends Model<Flag> {
 
   @Field()
   @Column({ allowNull: false })
+  service!: string;
+
+  @Field()
+  @Column({ allowNull: false })
   exploit!: string;
 
   @Field()
@@ -24,11 +28,7 @@ export default class Flag extends Model<Flag> {
 
   @Field()
   @Column({ allowNull: false })
-  service!: string;
-
-  @Field()
-  @Column({ allowNull: false })
-  tick!: number;
+  tick!: string;
 
   @Field({ nullable: true })
   @Column({ allowNull: true, defaultValue: 'QUEUED' })

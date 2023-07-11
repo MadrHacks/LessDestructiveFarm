@@ -58,6 +58,7 @@ class Search extends Component<Props, State> {
         team: this.props.searchParams.team || '',
         status: this.props.searchParams.status || '',
         flag: this.props.searchParams.flag || '',
+        tick: this.props.searchParams.tick || '',
         since: this.props.searchParams.since && new Date(this.props.searchParams.since),
         until: this.props.searchParams.until && new Date(this.props.searchParams.until),
         checksystemResponse: this.props.searchParams.checksystem_response || ''
@@ -147,7 +148,7 @@ class Search extends Component<Props, State> {
                   value={this.state.service}
                 >
                   <option value="">All</option>
-                  {this.props.searchValues.service.map((value, i) => {
+                  {this.props.searchValues.services.map((value, i) => {
                     return (
                       <option key={i} value={value}>
                         {value}

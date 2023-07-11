@@ -8,8 +8,10 @@ scalar DateTime
 
 type Flag {
   flag: String!
-  sploit: String!
+  service: String!
+  exploit: String!
   team: String!
+  tick: String!
   timestamp: DateTime!
   status: String
   checksystem_response: String
@@ -24,14 +26,15 @@ type Mutation {
 }
 
 type Query {
-  getFlags(flag: String, sploit: String, team: String, since: DateTime, until: DateTime, status: String, checksystem_response: String, offset: Int = 0, limit: Int = 30): [Flag!]!
-  getFlagCount(flag: String, sploit: String, team: String, since: DateTime, until: DateTime, status: String, checksystem_response: String): Int!
+  getFlags(flag: String, service: String, exploit: String, team: String, tick: String, since: DateTime, until: DateTime, status: String, checksystem_response: String, offset: Int = 0, limit: Int = 30): [Flag!]!
+  getFlagCount(flag: String, service: String, exploit: String, team: String, tick: String, since: DateTime, until: DateTime, status: String, checksystem_response: String): Int!
   getSearchValues: SearchValues!
   getGameInfo: GameInfo!
 }
 
 type SearchValues {
-  sploits: [String!]!
+  services: [String!]!
+  exploits: [String!]!
   teams: [String!]!
   statuses: [String!]!
 }

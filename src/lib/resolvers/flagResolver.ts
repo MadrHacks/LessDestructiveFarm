@@ -33,7 +33,7 @@ class GetFlagsCountArgs {
 
   @IsOptional()
   @Field({ nullable: true })
-  tick?: number;
+  tick?: string;
 
   @IsOptional()
   @IsDate()
@@ -71,7 +71,7 @@ class GetFlagsArgs extends GetFlagsCountArgs {
 @ObjectType()
 class SearchValues {
   @Field(type => [String])
-  service: string[];
+  services: string[];
 
   @Field(type => [String])
   exploits: string[];
@@ -163,13 +163,6 @@ export class FlagResolver {
     });
     const teams = [];
     for (const status of teamRes) teams.push(status.DISTINCT);
-
-    const tickRes: [{ DISTINCT: number }] = await Flag.aggregate('tick', 'DISTINCT', {
-      plain: false,
-      raw: true
-    });
-    const ticks = [];
-    for (const status of tickRes) ticks.push(status.DISTINCT);
 
     const statusRes: [{ DISTINCT: string }] = await Flag.aggregate('status', 'DISTINCT', {
       plain: false,

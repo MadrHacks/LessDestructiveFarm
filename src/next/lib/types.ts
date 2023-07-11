@@ -4,7 +4,7 @@ export type SearchParams = {
   team: string;
   status: string;
   flag: string;
-  tick: number;
+  tick: string;
   since: string;
   until: string;
   checksystem_response: string;
