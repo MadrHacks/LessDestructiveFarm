@@ -5,7 +5,7 @@ class NavBar extends Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark py-0">
         <img className="logo" src="/public/img/madr-logo.svg" />
-        <div className="navbar-brand">MadrHacks Farmer</div>
+        <div className="navbar-brand">MadrFarm</div>
       </nav>
     );
   }

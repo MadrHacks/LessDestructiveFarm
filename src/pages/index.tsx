@@ -92,7 +92,7 @@ export default class extends Component<Props> {
     return (
       <>
         <Head>
-          <title>MadrHacks Farmer</title>
+          <title>MadrFarm</title>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
         <NavBar />

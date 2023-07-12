@@ -138,25 +138,8 @@ class Search extends Component<Props, State> {
       <div className="col-lg-8">
         <div className="card border-light">
           <div className="card-body">
-            <h4 className="card-title">Show Flags</h4>
+            <h4 className="card-title">Search</h4>
             <div className="row mb-2">
-              <div className="col-md-4">
-                <label>Service</label>
-                <select
-                  className="form-control form-control-sm"
-                  onChange={this.onSelectService}
-                  value={this.state.service}
-                >
-                  <option value="">All</option>
-                  {this.props.searchValues.services.map((value, i) => {
-                    return (
-                      <option key={i} value={value}>
-                        {value}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
               <div className="col-md-4">
                 <label>Exploit</label>
                 <select
@@ -164,7 +147,7 @@ class Search extends Component<Props, State> {
                   onChange={this.onSelectExploit}
                   value={this.state.exploit}
                 >
-                  <option value="">All</option>
+                  <option value="">name</option>
                   {this.props.searchValues.exploits.map((value, i) => {
                     return (
                       <option key={i} value={value}>
@@ -174,14 +157,31 @@ class Search extends Component<Props, State> {
                   })}
                 </select>
               </div>
-              <div className="col-md-4">
-                <label>Team</label>
+              <div className="col-md-4 mt-2">
+                <label></label>
+                <select
+                  className="form-control form-control-sm"
+                  onChange={this.onSelectService}
+                  value={this.state.service}
+                >
+                  <option value="">service</option>
+                  {this.props.searchValues.services.map((value, i) => {
+                    return (
+                      <option key={i} value={value}>
+                        {value}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+              <div className="col-md-4 mt-2">
+                <label></label>
                 <select
                   className="form-control form-control-sm"
                   onChange={this.onSelectTeam}
                   value={this.state.team}
                 >
-                  <option value="">All</option>
+                  <option value="">team</option>
                   {this.props.searchValues.teams.map((value, i) => {
                     return (
                       <option key={i} value={value}>
@@ -191,25 +191,16 @@ class Search extends Component<Props, State> {
                   })}
                 </select>
               </div>
-              <div className="col-md-4">
-                <label>Flag</label>
-                <input
-                  type="text"
-                  className="form-control form-control-sm"
-                  value={this.state.flag}
-                  id="flag"
-                  onChange={this.onTextInputChanged}
-                />
-              </div>
             </div>
             <div className="row mb-3">
-              <div className="col-md-3">
-                <label>Since</label>
+              <div className="col-md-4">
+                <label>Time</label>
                 <div>
                   <DatePicker
                     className="form-control form-control-sm"
                     selected={this.state.since}
                     onChange={date => this.onDateChanged('since', date)}
+                    placeholderText="since"
                     timeInputLabel="Time:"
                     dateFormat="HH:mm"
                     showTimeInput={true}
@@ -217,13 +208,14 @@ class Search extends Component<Props, State> {
                   />
                 </div>
               </div>
-              <div className="col-md-3">
-                <label>Until</label>
+              <div className="col-md-4 mt-2">
+                <label></label>
                 <div>
                   <DatePicker
                     className="form-control form-control-sm"
                     selected={this.state.until}
                     onChange={date => this.onDateChanged('until', date)}
+                    placeholderText="until"
                     timeInputLabel="Time:"
                     dateFormat="HH:mm"
                     showTimeInput={true}
@@ -231,24 +223,38 @@ class Search extends Component<Props, State> {
                   />
                 </div>
               </div>
-              <div className="col-md-3">
-                <label>Tick</label>
+              <div className="col-md-4 mt-2">
+                <label></label>
                 <input
                   type="text"
                   className="form-control form-control-sm"
+                  placeholder="tick"
                   value={this.state.tick}
                   id="tick"
                   onChange={this.onTextInputChanged}
                 />
               </div>
-              <div className="col-md-2">
-                <label>Status</label>
+            </div>
+            <div className="row mb-4">
+              <div className="col-md-4">
+                <label>Misc</label>
+                <input
+                  type="text"
+                  className="form-control form-control-sm"
+                  placeholder="flag"
+                  value={this.state.flag}
+                  id="flag"
+                  onChange={this.onTextInputChanged}
+                />
+              </div>
+              <div className="col-md-4 mt-2">
+                <label></label>
                 <select
                   className="form-control form-control-sm"
                   onChange={this.onSelectStatus}
                   value={this.state.status}
                 >
-                  <option value="">All</option>
+                  <option value="">status</option>
                   {this.props.searchValues.statuses.map((value, i) => {
                     return (
                       <option key={i} value={value}>
@@ -258,11 +264,12 @@ class Search extends Component<Props, State> {
                   })}
                 </select>
               </div>
-              <div className="col-md-4">
-                <label>Checksystem response</label>
+              <div className="col-md-4 mt-2">
+                <label></label>
                 <input
                   type="text"
                   className="form-control form-control-sm"
+                  placeholder="checksystem response"
                   value={this.state.checksystemResponse}
                   id="checksystemResponse"
                   onChange={this.onTextInputChanged}

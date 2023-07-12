@@ -49,19 +49,15 @@ class ManualSubmission extends Component<Props, State> {
 
   render() {
     return (
-      <div className="col-lg-4 mt-3">
+      <div className="col-lg-4">
         <div className="card border-light">
           <div className="card-body">
-            <h4 className="card-title">Add Flags Manually</h4>
-            <label>
-              Text with flags
-              <small className="text-muted ml-2">
-                flag format: {this.props.gameInfo.flagFormat}
-              </small>
-            </label>
+            <h4 className="card-title">Manual flag submit</h4>
+            <label></label>
             <textarea
-              className="form-control form-control-sm mb-3 text-with-flags"
+              className="form-control form-control-sm mb-3 mt-2 text-with-flags"
               onChange={this.onTextChange}
+              placeholder={"flag format: " + this.props.gameInfo.flagFormat}
               value={this.state.text}
             ></textarea>
             <button className="btn btn-primary btn-sm" onClick={this.onSendClick}>
