@@ -3,7 +3,7 @@ import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import React from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
-import '../next/css/bootswatch-flatly.css';
+import '../next/css/bootswatch-flatly-dark.css';
 import '../next/css/style.css';
 
 if (typeof window !== 'undefined') {
